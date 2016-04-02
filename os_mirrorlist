@@ -1,0 +1,4 @@
+$SW_SERVER/download/mirrors/fedora-23
+$SW_SERVER/download/mirrors/updates-released-f23
+http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-23&arch=x86_64
+http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f23&arch=x86_64
