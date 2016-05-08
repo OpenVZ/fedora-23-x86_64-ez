@@ -25,4 +25,28 @@ pushd $rootdir > /dev/null
 [ -f /etc/localtime ] && cp -fp /etc/localtime etc/localtime
 [ -f /etc/sysconfig/i18n ] && cp -fp /etc/sysconfig/i18n etc/sysconfig/i18n
 
+# Add udev rule for ploop devices
+cat > usr/lib/udev/rules.d/59-persistent-storage.rules <<EOF
+ACTION=="remove", GOTO="persistent_storage_end"
+
+SUBSYSTEM!="block", GOTO="persistent_storage_end"
+KERNEL!="ploop*", GOTO="persistent_storage_end"
+
+# ignore partitions that span the entire disk
+TEST=="whole_disk", GOTO="persistent_storage_end"
+
+# for partitions import parent information
+ENV{DEVTYPE}=="partition", IMPORT{parent}="ID_*"
+
+# probe filesystem metadata of disks
+KERNEL!="sr*", IMPORT{builtin}="blkid"
+
+# by-label/by-uuid links (filesystem metadata)
+ENV{ID_FS_USAGE}=="filesystem|other|crypto", ENV{ID_FS_UUID_ENC}=="?*", SYMLINK+="disk/by-uuid/$env{ID_FS_UUID_ENC}"
+ENV{ID_FS_USAGE}=="filesystem|other", ENV{ID_FS_LABEL_ENC}=="?*", SYMLINK+="disk/by-label/$env{ID_FS_LABEL_ENC}"
+
+LABEL="persistent_storage_end"
+EOF
+
 popd > /dev/null
+
