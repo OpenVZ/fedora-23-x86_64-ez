@@ -52,7 +52,7 @@ Name: %templatename-%templatever-%templatearch-ez
 Group: Virtuozzo/Templates
 License: GPL
 Version: 7.0.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 BuildRoot: %_tmppath/%name-root
 BuildArch: noarch
 Requires: %package_manager_pkg
@@ -146,6 +146,10 @@ done
 %files -f files.lst
 
 %changelog
+* Wed Sep 14 2016 Konstantin Volkov <wolf@virtuozzo.com> 7.0.0-3
+- Disable iptables service by default, see #PSBM-52142
+- Dropped postgresql workaround: fixed in vzpkgenv
+
 * Tue Dec  1 2015 Konstantin Volckov <wolf@sw.ru> 7.0.0-2
 - Fixed postgresql startup just after installation to Container, see #PSBM-41623
 
