@@ -52,7 +52,7 @@ Name: %templatename-%templatever-%templatearch-ez
 Group: Virtuozzo/Templates
 License: GPL
 Version: 7.0.0
-Release: 5%{?dist}
+Release: 6%{?dist}
 BuildRoot: %_tmppath/%name-root
 BuildArch: noarch
 Requires: %package_manager_pkg
@@ -146,6 +146,9 @@ done
 %files -f files.lst
 
 %changelog
+* Mon Oct 10 2016 Konstantin Volkov <wolf@virtuozzo.com> 7.0.0-6
+- Turn back iptables service, see #PSBM-53457
+
 * Wed Sep 14 2016 Konstantin Volkov <wolf@virtuozzo.com> 7.0.0-3
 - Disable iptables service by default, see #PSBM-52142
 - Dropped postgresql workaround: fixed in vzpkgenv

@@ -30,7 +30,7 @@ for conf in 00-system 50-coredump 50-default; do
 done
 
 # turn services on
-list="network httpd sshd xinetd saslauthd sendmail crond"
+list="network httpd iptables sshd xinetd saslauthd sendmail crond"
 for i in $list; do
 	/bin/systemctl enable $i.service > /dev/null 2>&1
 done
