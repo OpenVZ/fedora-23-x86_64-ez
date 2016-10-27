@@ -87,4 +87,10 @@ fi
 
 rm -rf run/* > /dev/null 2>&1
 
+# Fix docker-firewalld startup
+mkdir -p etc/systemd/system/docker.service.d
+echo "[Unit]
+After=firewalld.service
+" > etc/systemd/system/docker.service.d/firewalld.conf
+
 popd > /dev/null
