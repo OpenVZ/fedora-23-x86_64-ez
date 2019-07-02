@@ -1,7 +1,7 @@
 Summary: Dummy package to fix systemd initscripts configs
 Name: vzdummy-systemd-f23
 Group: Applications/System
-Vendor: Parallels
+Vendor: Virtuozzo
 License: GPL
 Version: 1.0
 Release: 1
